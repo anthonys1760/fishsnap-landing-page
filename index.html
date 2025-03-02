@@ -510,10 +510,10 @@
                     
                     <div class="card bg-white p-4 rounded-4 shadow" id="signup-form">
                         <div class="card-body">
-                            <form id="waitlist-form">
+                            <form id="waitlist-form" action="https://formspree.io/f/mpwqvyoo" method="POST">
                                 <div class="row g-3">
                                     <div class="col-sm-8">
-                                        <input type="email" class="form-control form-control-lg" id="email" placeholder="Enter your email address" required>
+                                        <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Enter your email address" required>
                                         <div class="invalid-feedback">
                                             Please enter a valid email address.
                                         </div>
@@ -695,32 +695,7 @@
     <script>
         // Simple form validation and submission handling
         document.addEventListener('DOMContentLoaded', function() {
-            const waitlistForm = document.getElementById('waitlist-form');
-            const signupForm = document.getElementById('signup-form');
-            const signupSuccess = document.getElementById('signup-success');
-            
-            if (waitlistForm) {
-                waitlistForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    
-                    const emailInput = document.getElementById('email');
-                    const email = emailInput.value.trim();
-                    
-                    // Very simple validation
-                    if (!email || !/\S+@\S+\.\S+/.test(email)) {
-                        emailInput.classList.add('is-invalid');
-                        return;
-                    }
-                    
-                    // Simulated form submission success
-                    // In a real implementation, you would send this to your server or a service like Formspree
-                    
-                    // Hide the form and show success message
-                    signupForm.classList.add('d-none');
-                    signupSuccess.classList.remove('d-none');
-                    
-                    // You could also store the email in localStorage to remember the user signed up
-                    localStorage.setItem('fishsnap_signup', email);
+           
                     
                     // Optional: Track conversion with analytics
                     if (typeof gtag !== 'undefined') {
@@ -730,7 +705,6 @@
                         });
                     }
                 });
-            }
             
             // Check if user already signed up (for demo purposes)
             const previousSignup = localStorage.getItem('fishsnap_signup');
