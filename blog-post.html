@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Schema.org markup for individual blog post -->
+    <script type="application/ld+json" id="blogPostSchema">
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": "Blog Post Title",
+          "datePublished": "",
+          "author": {
+            "@type": "Person",
+            "name": ""
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "CatchAI",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://catchai.app/logo.png"
+            }
+          }
+        }
+    </script>
+    
+    <!-- Dynamic Meta Tags (will be updated via JavaScript) -->
+    <title>CatchAI Blog Post</title>
+    <meta name="description" content="CatchAI blog post">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwIDEwMCBDNDAgNTAsIDEyMCA1MCwgMTQwIDEwMCBDMTIwIDE1MCwgNDAgMTUwLCAyMCAxMDAiIGZpbGw9IiM0REE2RkYiIHN0cm9rZT0iIzAwNzdDQyIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI5MCIgcj0iNSIgZmlsbD0iYmxhY2siLz48cG9seWdvbiBwb2ludHM9IjE0MCwxMDAgMTcwLDgwIDE3MCwxMjAiIGZpbGw9IiMwMDc3Q0MiLz48L3N2Zz4="/>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom Colors */
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --accent-color: #0dcaf0;
+            --light-bg: #f8f9fa;
+            --dark-bg: #212529;
+        }
+        
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(to bottom right, #e6f2ff, #d9ecff);
+            padding: 4rem 0;
+        }
+        
+        /* Post Meta */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .post-meta i {
+            margin-right: 0.25rem;
+        }
+        
+        .post-meta-divider {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            margin: 0 0.5rem;
+            opacity: 0.5;
+        }
+        
+        /* Category Badge */
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(13, 110, 253, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        /* Blog Content */
+        .blog-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-content h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        /* Featured Image */
+        .featured-image {
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        /* Tags */
+        .post-tags {
+            margin: 2rem 0;
+        }
+        
+        .tag-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Related Posts */
+        .related-post-card {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .related-post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 4rem 0 2rem 0;
+        }
+        
+        .footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Loading indicator */
+        #loading {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 3rem;
+            height: 3rem;
+            border: 0.25rem solid rgba(13, 110, 253, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spinner 1s ease-in-out infinite;
+        }
+        
+        @keyframes spinner {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Not Found State */
+        .not-found {
+            text-align: center;
+            padding: 5rem 0;
+        }
+        
+        .not-found-icon {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            opacity: 0.3;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <div class="rounded-3 p-2 me-2">
+                    <img src="/img/logos/2.png" alt="CatchAI Logo" class="img-fluid" style="max-width: 40px;">
+                </div>
+                <span class="fw-bold">CatchAI</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#how-it-works">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-primary" href="index.html#signup">Get Early Access</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading State -->
+    <div id="loading" class="container">
+        <div class="spinner"></div>
+        <p class="mt-3 text-secondary">Loading blog post...</p>
+    </div>
+    
+    <!-- Blog Post Content (Hidden until loaded) -->
+    <div id="blog-post" style="display: none;">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <div class="mb-2">
+                            <span class="category-badge" id="post-category">
+                                <i class="bi bi-bookmark-fill me-1"></i> Category
+                            </span>
+                        </div>
+                        <h1 class="display-4 fw-bold mb-4" id="post-title">Blog Post Title</h1>
+                        <div class="post-meta justify-content-center">
+                            <i class="bi bi-calendar"></i> <span id="post-date">March 1, 2025</span>
+                            <span class="post-meta-divider"></span>
+                            <i class="bi bi-person"></i> <span id="post-author">Author Name</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Post Content -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <!-- Featured Image -->
+                        <div class="featured-image">
+                            <img src="" alt="Blog Post" id="post-image">
+                        </div>
+                        
+                        <!-- Blog Content -->
+                        <div class="blog-content" id="post-content">
+                            <!-- Content will be inserted here -->
+                        </div>
+                        
+                        <!-- Tags -->
+                        <div class="post-tags" id="post-tags">
+                            <!-- Tags will be inserted here -->
+                        </div>
+                        
+                        <!-- Share Buttons -->
+                        <div class="mt-5 mb-5">
+                            <h4 class="mb-3">Share This Post</h4>
+                            <a href="#" class="btn btn-outline-primary me-2 share-twitter">
+                                <i class="bi bi-twitter-x me-2"></i> Twitter
+                            </a>
+                            <a href="#" class="btn btn-outline-primary me-2 share-facebook">
+                                <i class="bi bi-facebook me-2"></i> Facebook
+                            </a>
+                            <a href="#" class="btn btn-outline-primary me-2 share-linkedin">
+                                <i class="bi bi-linkedin me-2"></i> LinkedIn
+                            </a>
+                            <a href="#" class="btn btn-outline-primary share-email">
+                                <i class="bi bi-envelope me-2"></i> Email
+                            </a>
+                        </div>
+                        
+                        <!-- Post Navigation -->
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <a href="#" class="text-decoration-none d-flex align-items-center" id="prev-post" style="display: none !important;">
+                                    <i class="bi bi-arrow-left me-2"></i>
+                                    <div>
+                                        <div class="text-secondary small">Previous Post</div>
+                                        <div class="fw-medium prev-post-title">Previous post title</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 text-end">
+                                <a href="#" class="text-decoration-none d-flex align-items-center justify-content-end" id="next-post" style="display: none !important;">
+                                    <div>
+                                        <div class="text-secondary small">Next Post</div>
+                                        <div class="fw-medium next-post-title">Next post title</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Related Posts -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <h2 class="text-center mb-5">Related Posts</h2>
+                        
+                        <div class="row g-4" id="related-posts">
+                            <!-- Related posts will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Not Found State (Hidden by default) -->
+    <div class="not-found d-none" id="not-found">
+        <div class="container">
+            <div class="not-found-icon">
+                <i class="bi bi-file-earmark-x"></i>
+            </div>
+            <h2>Blog Post Not Found</h2>
+            <p class="text-secondary mb-4">
+                The blog post you're looking for doesn't seem to exist.
+            </p>
+            <a href="blog.html" class="btn btn-primary">
+                <i class="bi bi-arrow-left me-2"></i> Back to Blog
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="rounded-3 p-2 me-2">
+                            <img src="/img/logos/2.png" alt="CatchAI Logo" class="img-fluid" style="max-width: 40px;">
+                        </div>
+                        <span class="fs-4 fw-bold text-white">CatchAI</span>
+                    </div>
+                    <p class="text-white-50 mb-4">
+                        The most advanced fish identification app for anglers of all experience levels.
+                    </p>
+                </div>
+                
+                <div class="col-sm-4 col-lg-2 offset-lg-1">
+                    <h5 class="text-white-50 mb-3">Product</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html#features">Features</a></li>
+                        <li class="mb-2"><a href="index.html#how-it-works">How It Works</a></li>
+                        <li class="mb-2"><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-sm-4 col-lg-2">
+                    <h5 class="text-white-50 mb-3">Company</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">About Us</a></li>
+                        <li class="mb-2"><a href="blog.html">Blog</a></li>
+                        <li class="mb-2"><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-sm-4 col-lg-2">
+                    <h5 class="text-white-50 mb-3">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="mt-5 mb-4 border-secondary">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0 text-white-50">
+                        &copy; 2025 CatchAI. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Blog Post JavaScript -->
+    <script>
+        // Configuration
+        const BLOG_JSON_PATH = 'blog-posts.json'; // Path to your JSON file
+        
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        // Convert plain text with newlines to HTML paragraphs
+        function textToHtml(text) {
+            if (!text) return '';
+            
+            // Split by double newlines (paragraph breaks)
+            const paragraphs = text.split(/\n\n+/);
+            
+            // Convert each paragraph
+            return paragraphs.map(p => {
+                // Handle lists
+                if (p.match(/^[\d\-\*]\s+/m)) {
+                    const listItems = p.split(/\n/).map(line => {
+                        return `<li>${line.replace(/^[\d\-\*]\s+/, '')}</li>`;
+                    }).join('');
+                    
+                    return `<ul>${listItems}</ul>`;
+                }
+                
+                // Handle headings
+                if (p.startsWith('# ')) {
+                    return `<h2>${p.substring(2)}</h2>`;
+                }
+                
+                if (p.startsWith('## ')) {
+                    return `<h3>${p.substring(3)}</h3>`;
+                }
+                
+                // Regular paragraph
+                return `<p>${p.replace(/\n/g, '<br>')}</p>`;
+            }).join('');
+        }
+        
+        // Get post ID from URL
+        function getPostIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+        
+        // Display related posts
+        function displayRelatedPosts(posts, currentPostId, currentCategory) {
+            // Get posts in the same category, excluding current post
+            const relatedPosts = posts.filter(post => 
+                post.id != currentPostId && post.category === currentCategory
+            ).slice(0, 3);
+            
+            if (relatedPosts.length === 0) {
+                // If no posts in same category, just get other posts
+                const otherPosts = posts.filter(post => post.id != currentPostId).slice(0, 3);
+                return renderRelatedPosts(otherPosts);
+            }
+            
+            return renderRelatedPosts(relatedPosts);
+        }
+        
+        // Render related posts HTML
+        function renderRelatedPosts(posts) {
+            return posts.map(post => {
+                return `
+                    <div class="col-md-4">
+                        <div class="related-post-card">
+                            <img src="${post.image || 'img/placeholder-1.jpg'}" alt="${post.title}" 
+                                class="img-fluid" style="height: 160px; object-fit: cover;">
+                            <div class="card-body p-4">
+                                <h3 class="h5 mb-2">
+                                    <a href="blog-post.html?id=${post.id}" class="text-decoration-none">${post.title}</a>
+                                </h3>
+                                <div class="small text-secondary mb-2">${formatDate(post.date)}</div>
+                                <a href="blog-post.html?id=${post.id}" class="btn btn-sm btn-outline-primary">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Set up share buttons
+        function setupShareButtons(post) {
+            const postUrl = window.location.href;
+            const postTitle = encodeURIComponent(post.title);
+            
+            // Twitter
+            document.querySelector('.share-twitter').href = 
+                `https://twitter.com/intent/tweet?text=${postTitle}&url=${encodeURIComponent(postUrl)}`;
+            
+            // Facebook
+            document.querySelector('.share-facebook').href = 
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
+            
+            // LinkedIn
+            document.querySelector('.share-linkedin').href = 
+                `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(postUrl)}&title=${postTitle}`;
+            
+            // Email
+            document.querySelector('.share-email').href = 
+                `mailto:?subject=${postTitle}&body=Check out this article: ${postUrl}`;
+        }
+        
+        // Update meta tags
+        function updateMetaTags(post) {
+            // Title
+            document.title = `${post.title} - CatchAI Blog`;
+            
+            // Meta description
+            document.querySelector('meta[name="description"]').setAttribute('content', post.excerpt);
+            
+            // Schema.org
+            const schemaScript = document.getElementById('blogPostSchema');
+            const schemaData = JSON.parse(schemaScript.textContent);
+            
+            schemaData.headline = post.title;
+            schemaData.datePublished = post.date;
+            schemaData.author.name = post.author;
+            
+            schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+        }
+        
+        // Fetch and display blog post
+        async function fetchAndDisplayPost() {
+            const postId = getPostIdFromUrl();
+            
+            if (!postId) {
+                showNotFound();
+                return;
+            }
+            
+            try {
+                const response = await fetch(BLOG_JSON_PATH);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                const post = data.posts.find(p => p.id == postId);
+                
+                if (!post) {
+                    showNotFound();
+                    return;
+                }
+                
+                // Display post
+                document.getElementById('post-title').textContent = post.title;
+                document.getElementById('post-date').textContent = formatDate(post.date);
+                document.getElementById('post-author').textContent = post.author;
+                document.getElementById('post-category').innerHTML = 
+                    `<i class="bi bi-bookmark-fill me-1"></i> ${post.category}`;
+                
+                // Set featured image
+                if (post.image) {
+                    document.getElementById('post-image').src = post.image;
+                    document.getElementById('post-image').alt = post.title;
+                } else {
+                    document.getElementById('post-image').src = 'img/placeholder-1.jpg';
+                }
+                
+                // Set content
+                document.getElementById('post-content').innerHTML = textToHtml(post.content);
+                
+                // Set tags
+                if (post.tags && post.tags.length > 0) {
+                    const tagsHtml = post.tags.map(tag => 
+                        `<span class="tag-badge"><i class="bi bi-tag me-1"></i> ${tag}</span>`
+                    ).join('');
+                    document.getElementById('post-tags').innerHTML = tagsHtml;
+                } else {
+                    document.getElementById('post-tags').style.display = 'none';
+                }
+                
+                // Set related posts
+                const relatedPostsHtml = displayRelatedPosts(data.posts, post.id, post.category);
+                document.getElementById('related-posts').innerHTML = relatedPostsHtml;
+                
+                // Set up navigation between posts
+                setupPostNavigation(data.posts, post.id);
+                
+                // Set up share buttons
+                setupShareButtons(post);
+                
+                // Update meta tags
+                updateMetaTags(post);
+                
+                // Show the post content
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('blog-post').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error fetching blog post:', error);
+                showNotFound();
+            }
+        }
+        
+        // Set up navigation between posts
+        function setupPostNavigation(posts, currentPostId) {
+            // Sort posts by date (newest first)
+            const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Find current post index
+            const currentIndex = sortedPosts.findIndex(p => p.id == currentPostId);
+            
+            // Previous post (newer)
+            if (currentIndex < sortedPosts.length - 1) {
+                const prevPost = sortedPosts[currentIndex + 1];
+                const prevPostEl = document.getElementById('prev-post');
+                
+                prevPostEl.href = `blog-post.html?id=${prevPost.id}`;
+                prevPostEl.querySelector('.prev-post-title').textContent = prevPost.title;
+                prevPostEl.style.display = 'flex';
+            }
+            
+            // Next post (older)
+            if (currentIndex > 0) {
+                const nextPost = sortedPosts[currentIndex - 1];
+                const nextPostEl = document.getElementById('next-post');
+                
+                nextPostEl.href = `blog-post.html?id=${nextPost.id}`;
+                nextPostEl.querySelector('.next-post-title').textContent = nextPost.title;
+                nextPostEl.style.display = 'flex';
+            }
+        }
+        
+        // Show not found message
+        function showNotFound() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('not-found').classList.remove('d-none');
+        }
+        
+        // Load blog post when the page is ready
+        document.addEventListener('DOMContentLoaded', fetchAndDisplayPost);
+    </script>
+</body>
+</html>

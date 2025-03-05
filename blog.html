@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Schema.org markup for CatchAI -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "CatchAI Blog",
+          "description": "Latest news, tips, and updates about CatchAI, the AI-powered fish identification app.",
+          "url": "https://catchai.app/blog.html"
+        }
+    </script>
+    
+    <!-- Primary Meta Tags -->
+    <title>CatchAI Blog: Latest Fishing News, Tips & App Updates</title>
+    <meta name="title" content="CatchAI Blog: Latest Fishing News, Tips & App Updates">
+    <meta name="description" content="Stay updated with the latest fishing tips, species information, app updates, and more from the CatchAI team.">
+    <meta name="keywords" content="fish identification blog, fishing tips, fishing news, CatchAI updates, angler resources">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwIDEwMCBDNDAgNTAsIDEyMCA1MCwgMTQwIDEwMCBDMTIwIDE1MCwgNDAgMTUwLCAyMCAxMDAiIGZpbGw9IiM0REE2RkYiIHN0cm9rZT0iIzAwNzdDQyIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI5MCIgcj0iNSIgZmlsbD0iYmxhY2siLz48cG9seWdvbiBwb2ludHM9IjE0MCwxMDAgMTcwLDgwIDE3MCwxMjAiIGZpbGw9IiMwMDc3Q0MiLz48L3N2Zz4="/>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom Colors */
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --accent-color: #0dcaf0;
+            --light-bg: #f8f9fa;
+            --dark-bg: #212529;
+        }
+        
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(to bottom right, #e6f2ff, #d9ecff);
+            padding: 4rem 0;
+        }
+
+        /* Blog Post Cards */
+        .blog-post-card {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .blog-post-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-post-excerpt {
+            flex-grow: 1;
+        }
+        
+        /* Category Badges */
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(13, 110, 253, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        
+        /* Post Meta */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .post-meta i {
+            margin-right: 0.25rem;
+        }
+        
+        .post-meta-divider {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            margin: 0 0.5rem;
+            opacity: 0.5;
+        }
+        
+        /* Pagination */
+        .pagination .page-link {
+            border-radius: 0.5rem;
+            margin: 0 0.25rem;
+            border: none;
+            color: var(--secondary-color);
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Sidebar */
+        .sidebar-section {
+            border-radius: 1rem;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-title {
+            position: relative;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .sidebar-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 50px;
+            background-color: var(--primary-color);
+        }
+        
+        /* Tag Cloud */
+        .tag-cloud a {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            margin: 0 0.5rem 0.5rem 0;
+            background-color: var(--light-bg);
+            border-radius: 0.5rem;
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .tag-cloud a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Featured Posts */
+        .featured-post {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .featured-post:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .featured-post-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 0.5rem;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+        
+        .featured-post-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .featured-post-date {
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 4rem 0 2rem 0;
+        }
+        
+        .footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Loading indicator */
+        #loading {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 3rem;
+            height: 3rem;
+            border: 0.25rem solid rgba(13, 110, 253, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spinner 1s ease-in-out infinite;
+        }
+        
+        @keyframes spinner {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .empty-state-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <div class="rounded-3 p-2 me-2">
+                    <img src="/img/logos/2.png" alt="CatchAI Logo" class="img-fluid" style="max-width: 40px;">
+                </div>
+                <span class="fw-bold">CatchAI</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#how-it-works">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-primary" href="index.html#signup">Get Early Access</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="display-4 fw-bold mb-4">CatchAI Blog</h1>
+                    <p class="lead text-secondary mb-0">
+                        Latest fishing tips, species information, and app updates
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Main Blog Content -->
+                <div class="col-lg-8">
+                    <!-- Blog Posts Grid -->
+                    <div class="row g-4" id="blog-posts">
+                        <div id="loading">
+                            <div class="spinner"></div>
+                            <p class="mt-3 text-secondary">Loading blog posts...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Empty State (Hidden by default) -->
+                    <div class="empty-state d-none" id="empty-state">
+                        <div class="empty-state-icon">
+                            <i class="bi bi-journal-text"></i>
+                        </div>
+                        <h3>No Blog Posts Found</h3>
+                        <p class="text-secondary">
+                            We're working on adding new content. Check back soon!
+                        </p>
+                    </div>
+                    
+                    <!-- Pagination (Hidden by default) -->
+                    <nav class="mt-5 d-none" id="pagination">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" id="prev-page" tabindex="-1" aria-disabled="true">
+                                    <i class="bi bi-chevron-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" id="next-page">
+                                    Next <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Search -->
+                    <div class="sidebar-section">
+                        <h3 class="h5 sidebar-title">Search</h3>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="search-input" placeholder="Search blog posts...">
+                            <button class="btn btn-primary" type="button" id="search-button">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories -->
+                    <div class="sidebar-section">
+                        <h3 class="h5 sidebar-title">Categories</h3>
+                        <div id="categories-list">
+                            <!-- Categories will be loaded dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Featured Posts -->
+                    <div class="sidebar-section">
+                        <h3 class="h5 sidebar-title">Featured Posts</h3>
+                        <div id="featured-posts">
+                            <!-- Featured posts will be loaded dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="sidebar-section">
+                        <h3 class="h5 sidebar-title">Popular Tags</h3>
+                        <div class="tag-cloud" id="tags-list">
+                            <!-- Tags will be loaded dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="sidebar-section">
+                        <h3 class="h5 sidebar-title">Newsletter</h3>
+                        <p class="mb-3">Get the latest blog updates directly in your inbox</p>
+                        <form>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Your email address">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="rounded-3 p-2 me-2">
+                            <img src="/img/logos/2.png" alt="CatchAI Logo" class="img-fluid" style="max-width: 40px;">
+                        </div>
+                        <span class="fs-4 fw-bold text-white">CatchAI</span>
+                    </div>
+                    <p class="text-white-50 mb-4">
+                        The most advanced fish identification app for anglers of all experience levels.
+                    </p>
+                </div>
+                
+                <div class="col-sm-4 col-lg-2 offset-lg-1">
+                    <h5 class="text-white-50 mb-3">Product</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html#features">Features</a></li>
+                        <li class="mb-2"><a href="index.html#how-it-works">How It Works</a></li>
+                        <li class="mb-2"><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-sm-4 col-lg-2">
+                    <h5 class="text-white-50 mb-3">Company</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">About Us</a></li>
+                        <li class="mb-2"><a href="blog.html">Blog</a></li>
+                        <li class="mb-2"><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-sm-4 col-lg-2">
+                    <h5 class="text-white-50 mb-3">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="mt-5 mb-4 border-secondary">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0 text-white-50">
+                        &copy; 2025 CatchAI. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Blog JavaScript -->
+    <script>
+        // Configuration
+        const BLOG_JSON_PATH = 'blog-posts.json'; // Path to your JSON file
+        const POSTS_PER_PAGE = 6;                 // Number of posts to show per page
+        
+        // Placeholder images to use when no image is provided
+        const PLACEHOLDER_IMAGES = [
+            'img/placeholder-1.jpg',
+            'img/placeholder-2.jpg',
+            'img/placeholder-3.jpg',
+            'img/placeholder-4.jpg'
+        ];
+        
+        // Get random placeholder image
+        function getRandomPlaceholder() {
+            const randomIndex = Math.floor(Math.random() * PLACEHOLDER_IMAGES.length);
+            return PLACEHOLDER_IMAGES[randomIndex];
+        }
+        
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        // Create blog post card
+        function createPostCard(post) {
+            const formattedDate = formatDate(post.date);
+            
+            // Use post image or fallback to placeholder
+            const imageUrl = post.image || getRandomPlaceholder();
+            
+            // Create unique URL for the blog post
+            const postUrl = `blog-post.html?id=${post.id}`;
+            
+            return `
+                <div class="col-md-6">
+                    <div class="blog-post-card">
+                        <img src="${imageUrl}" alt="${post.title}" class="img-fluid" style="height: 200px; object-fit: cover;">
+                        <div class="card-body p-4 blog-post-content">
+                            <div class="mb-2">
+                                <span class="category-badge">
+                                    <i class="bi bi-bookmark-fill me-1"></i> ${post.category}
+                                </span>
+                            </div>
+                            <h3 class="h4 mb-2">
+                                <a href="${postUrl}" class="text-decoration-none">${post.title}</a>
+                            </h3>
+                            <div class="post-meta">
+                                <i class="bi bi-calendar"></i> ${formattedDate}
+                                <span class="post-meta-divider"></span>
+                                <i class="bi bi-person"></i> ${post.author}
+                            </div>
+                            <p class="text-secondary blog-post-excerpt">${post.excerpt}</p>
+                            <a href="${postUrl}" class="btn btn-outline-primary mt-3">
+                                Read More <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Fetch blog posts from JSON file
+        async function fetchBlogPosts() {
+            try {
+                const response = await fetch(BLOG_JSON_PATH);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                const loadingEl = document.getElementById('loading');
+                const blogPostsEl = document.getElementById('blog-posts');
+                const emptyStateEl = document.getElementById('empty-state');
+                
+                loadingEl.style.display = 'none';
+                
+                if (!data.posts || data.posts.length === 0) {
+                    emptyStateEl.classList.remove('d-none');
+                    return;
+                }
+                
+                const postsHTML = data.posts.map(post => createPostCard(post)).join('');
+                blogPostsEl.innerHTML = postsHTML;
+                
+                // Show pagination if we have enough posts
+                if (data.posts.length >= POSTS_PER_PAGE) {
+                    document.getElementById('pagination').classList.remove('d-none');
+                }
+                
+                // Update categories sidebar
+                updateCategoriesList(data.posts);
+                
+                // Update featured posts
+                updateFeaturedPosts(data.posts);
+                
+                // Update tags
+                updateTags(data.posts);
+                
+            } catch (error) {
+                console.error('Error fetching blog posts:', error);
+                document.getElementById('loading').innerHTML = `
+                    <div class="text-center text-danger">
+                        <i class="bi bi-exclamation-triangle fs-1 mb-3"></i>
+                        <p>Unable to load blog posts. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Update categories list in sidebar
+        function updateCategoriesList(posts) {
+            // Count posts by category
+            const categories = {};
+            posts.forEach(post => {
+                if (!categories[post.category]) {
+                    categories[post.category] = 0;
+                }
+                categories[post.category]++;
+            });
+            
+            // Create HTML for categories
+            let categoriesHTML = '';
+            Object.keys(categories).forEach(category => {
+                categoriesHTML += `
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <a href="blog.html?category=${encodeURIComponent(category)}" class="text-decoration-none">${category}</a>
+                        <span class="badge bg-light text-secondary">${categories[category]}</span>
+                    </div>
+                `;
+            });
+            
+            // Update DOM
+            const categoriesListEl = document.getElementById('categories-list');
+            if (categoriesListEl) {
+                categoriesListEl.innerHTML = categoriesHTML;
+            }
+        }
+        
+        // Update featured posts in sidebar
+        function updateFeaturedPosts(posts) {
+            // Sort by date (most recent first) and take top 3
+            const featuredPosts = [...posts]
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 3);
+            
+            // Create HTML for featured posts
+            let featuredHTML = '';
+            featuredPosts.forEach(post => {
+                const formattedDate = formatDate(post.date);
+                const imageUrl = post.image || getRandomPlaceholder();
+                featuredHTML += `
+                    <div class="featured-post">
+                        <img src="${imageUrl}" alt="${post.title}" class="featured-post-image">
+                        <div>
+                            <h4 class="featured-post-title">
+                                <a href="blog-post.html?id=${post.id}" class="text-decoration-none">${post.title}</a>
+                            </h4>
+                            <div class="featured-post-date">${formattedDate}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Update DOM
+            const featuredPostsEl = document.getElementById('featured-posts');
+            if (featuredPostsEl) {
+                featuredPostsEl.innerHTML = featuredHTML;
+            }
+        }
+        
+        // Update tags in sidebar
+        function updateTags(posts) {
+            // Collect all tags from posts
+            const tagCounts = {};
+            posts.forEach(post => {
+                if (post.tags && Array.isArray(post.tags)) {
+                    post.tags.forEach(tag => {
+                        if (!tagCounts[tag]) {
+                            tagCounts[tag] = 0;
+                        }
+                        tagCounts[tag]++;
+                    });
+                }
+            });
+            
+            // Create HTML for tags
+            let tagsHTML = '';
+            Object.keys(tagCounts).forEach(tag => {
+                tagsHTML += `<a href="blog.html?tag=${encodeURIComponent(tag)}">${tag}</a> `;
+            });
+            
+            // Update DOM
+            const tagCloudEl = document.getElementById('tags-list');
+            if (tagCloudEl) {
+                tagCloudEl.innerHTML = tagsHTML;
+            }
+        }
+        
+        // Search functionality
+        function setupSearch() {
+            const searchButton = document.getElementById('search-button');
+            const searchInput = document.getElementById('search-input');
+            
+            searchButton.addEventListener('click', () => {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                if (searchTerm) {
+                    window.location.href = `blog.html?search=${encodeURIComponent(searchTerm)}`;
+                }
+            });
+            
+            // Enable search on Enter key
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    searchButton.click();
+                }
+            });
+        }
+        
+        // Filter posts by URL parameters
+        function filterPosts(posts) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            const tag = urlParams.get('tag');
+            const search = urlParams.get('search');
+            
+            if (!category && !tag && !search) {
+                return posts; // No filtering needed
+            }
+            
+            return posts.filter(post => {
+                // Filter by category
+                if (category && post.category !== category) {
+                    return false;
+                }
+                
+                // Filter by tag
+                if (tag && (!post.tags || !post.tags.includes(tag))) {
+                    return false;
+                }
+                
+                // Filter by search term
+                if (search) {
+                    const searchTerm = search.toLowerCase();
+                    const titleMatch = post.title.toLowerCase().includes(searchTerm);
+                    const excerptMatch = post.excerpt.toLowerCase().includes(searchTerm);
+                    const contentMatch = post.content.toLowerCase().includes(searchTerm);
+                    
+                    if (!titleMatch && !excerptMatch && !contentMatch) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            });
+        }
+        
+        // Initialize the blog
+        function initBlog() {
+            // Fetch blog posts
+            fetchBlogPosts();
+            
+            // Setup search
+            setupSearch();
+        }
+        
+        // Load blog when the page is ready
+        document.addEventListener('DOMContentLoaded', initBlog);
+    </script>
+</body>
+</html>
